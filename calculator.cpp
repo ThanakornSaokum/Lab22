@@ -1,66 +1,418 @@
-#include <windows.h>
+#pragma once
 
-/* This is where all the input to the window goes to */
-LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) {
-	switch(Message) {
-		
-		/* Upon destruction, tell the main thread to stop */
-		case WM_DESTROY: {
-			PostQuitMessage(0);
-			break;
+
+
+namespace LabCalculator {
+
+
+
+	using namespace System;
+
+	using namespace System::ComponentModel;
+
+	using namespace System::Collections;
+
+	using namespace System::Windows::Forms;
+
+	using namespace System::Data;
+
+	using namespace System::Drawing;
+
+
+
+	/// <summary>
+
+	/// Summary for MyForm
+
+	/// </summary>
+
+	public ref class MyForm : public System::Windows::Forms::Form
+
+	{
+
+	public:
+
+		MyForm(void)
+
+		{
+
+			InitializeComponent();
+
+			//
+
+			//TODO: Add the constructor code here
+
+			//
+
 		}
-		
-		/* All other messages (a lot of them) are processed using default procedures */
-		default:
-			return DefWindowProc(hwnd, Message, wParam, lParam);
-	}
-	return 0;
+
+
+
+	protected:
+
+		/// <summary>
+
+		/// Clean up any resources being used.
+
+		/// </summary>
+
+		~MyForm()
+
+		{
+
+			if (components)
+
+			{
+
+				delete components;
+
+			}
+
+		}
+
+	private: System::Windows::Forms::Button^ button1;
+
+	protected:
+
+	private: System::Windows::Forms::TextBox^ textBox1;
+
+	private: System::Windows::Forms::TextBox^ textBox2;
+
+	private: System::Windows::Forms::Button^ btnMultipled;
+
+
+
+
+
+
+
+	private: System::Windows::Forms::Button^ btnMinus;
+
+
+
+	private: System::Windows::Forms::Button^ btnPlus;
+
+	private: System::Windows::Forms::Button^ btnDivide;
+
+
+
+
+
+
+
+	private:
+
+		/// <summary>
+
+		/// Required designer variable.
+
+		/// </summary>
+
+		System::ComponentModel::Container ^components;
+
+
+
+#pragma region Windows Form Designer generated code
+
+		/// <summary>
+
+		/// Required method for Designer support - do not modify
+
+		/// the contents of this method with the code editor.
+
+		/// </summary>
+
+		void InitializeComponent(void)
+
+		{
+
+			this->button1 = (gcnew System::Windows::Forms::Button());
+
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+
+			this->btnMultipled = (gcnew System::Windows::Forms::Button());
+
+			this->btnMinus = (gcnew System::Windows::Forms::Button());
+
+			this->btnPlus = (gcnew System::Windows::Forms::Button());
+
+			this->btnDivide = (gcnew System::Windows::Forms::Button());
+
+			this->SuspendLayout();
+
+			// 
+
+			// button1
+
+			// 
+
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+
+				static_cast<System::Byte>(0)));
+
+			this->button1->Location = System::Drawing::Point(13, 13);
+
+			this->button1->Name = L"button1";
+
+			this->button1->Size = System::Drawing::Size(209, 30);
+
+			this->button1->TabIndex = 0;
+
+			this->button1->Text = L"Please input two numbers";
+
+			this->button1->UseVisualStyleBackColor = true;
+
+			// 
+
+			// textBox1
+
+			// 
+
+			this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+
+				static_cast<System::Byte>(0)));
+
+			this->textBox1->Location = System::Drawing::Point(48, 49);
+
+			this->textBox1->Multiline = true;
+
+			this->textBox1->Name = L"textBox1";
+
+			this->textBox1->Size = System::Drawing::Size(140, 30);
+
+			this->textBox1->TabIndex = 1;
+
+			// 
+
+			// textBox2
+
+			// 
+
+			this->textBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+
+				static_cast<System::Byte>(0)));
+
+			this->textBox2->Location = System::Drawing::Point(48, 85);
+
+			this->textBox2->Multiline = true;
+
+			this->textBox2->Name = L"textBox2";
+
+			this->textBox2->Size = System::Drawing::Size(140, 30);
+
+			this->textBox2->TabIndex = 2;
+
+			// 
+
+			// btnMultipled
+
+			// 
+
+			this->btnMultipled->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+
+				static_cast<System::Byte>(0)));
+
+			this->btnMultipled->Location = System::Drawing::Point(122, 121);
+
+			this->btnMultipled->Name = L"btnMultipled";
+
+			this->btnMultipled->Size = System::Drawing::Size(30, 30);
+
+			this->btnMultipled->TabIndex = 3;
+
+			this->btnMultipled->Text = L"*";
+
+			this->btnMultipled->UseVisualStyleBackColor = true;
+
+			this->btnMultipled->Click += gcnew System::EventHandler(this, &MyForm::btnMultipled_Click);
+
+			// 
+
+			// btnMinus
+
+			// 
+
+			this->btnMinus->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+
+				static_cast<System::Byte>(0)));
+
+			this->btnMinus->Location = System::Drawing::Point(86, 121);
+
+			this->btnMinus->Name = L"btnMinus";
+
+			this->btnMinus->Size = System::Drawing::Size(30, 30);
+
+			this->btnMinus->TabIndex = 4;
+
+			this->btnMinus->Text = L"-";
+
+			this->btnMinus->UseVisualStyleBackColor = true;
+
+			this->btnMinus->Click += gcnew System::EventHandler(this, &MyForm::btnMinus_Click);
+
+			// 
+
+			// btnPlus
+
+			// 
+
+			this->btnPlus->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+
+				static_cast<System::Byte>(0)));
+
+			this->btnPlus->Location = System::Drawing::Point(48, 121);
+
+			this->btnPlus->Name = L"btnPlus";
+
+			this->btnPlus->Size = System::Drawing::Size(30, 30);
+
+			this->btnPlus->TabIndex = 5;
+
+			this->btnPlus->Text = L"+";
+
+			this->btnPlus->UseVisualStyleBackColor = true;
+
+			this->btnPlus->Click += gcnew System::EventHandler(this, &MyForm::btnPlus_Click);
+
+			// 
+
+			// btnDivide
+
+			// 
+
+			this->btnDivide->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+
+				static_cast<System::Byte>(0)));
+
+			this->btnDivide->Location = System::Drawing::Point(158, 121);
+
+			this->btnDivide->Name = L"btnDivide";
+
+			this->btnDivide->Size = System::Drawing::Size(30, 30);
+
+			this->btnDivide->TabIndex = 6;
+
+			this->btnDivide->Text = L"/";
+
+			this->btnDivide->UseVisualStyleBackColor = true;
+
+			this->btnDivide->Click += gcnew System::EventHandler(this, &MyForm::btnDivide_Click);
+
+			// 
+
+			// MyForm
+
+			// 
+
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+
+			this->BackColor = System::Drawing::Color::Cyan;
+
+			this->ClientSize = System::Drawing::Size(234, 161);
+
+			this->Controls->Add(this->btnDivide);
+
+			this->Controls->Add(this->btnPlus);
+
+			this->Controls->Add(this->btnMinus);
+
+			this->Controls->Add(this->btnMultipled);
+
+			this->Controls->Add(this->textBox2);
+
+			this->Controls->Add(this->textBox1);
+
+			this->Controls->Add(this->button1);
+
+			this->Enabled = false;
+
+			this->Name = L"MyForm";
+
+			this->Text = L"My Calculator";
+
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+
+			this->ResumeLayout(false);
+
+			this->PerformLayout();
+
+
+
+		}
+
+#pragma endregion
+
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+
+	this->Enabled = true;
+
 }
 
-/* The 'main' function of Win32 GUI programs: this is where execution starts */
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-	WNDCLASSEX wc; /* A properties struct of our window */
-	HWND hwnd; /* A 'HANDLE', hence the H, or a pointer to our window */
-	MSG msg; /* A temporary location for all messages */
+private: System::Void btnPlus_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	/* zero out the struct and set the stuff we want to modify */
-	memset(&wc,0,sizeof(wc));
-	wc.cbSize	 = sizeof(WNDCLASSEX);
-	wc.lpfnWndProc	 = WndProc; /* This is where we will send messages to */
-	wc.hInstance	 = hInstance;
-	wc.hCursor	 = LoadCursor(NULL, IDC_ARROW);
-	
-	/* White, COLOR_WINDOW is just a #define for a system color, try Ctrl+Clicking it */
-	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
-	wc.lpszClassName = "WindowClass";
-	wc.hIcon	 = LoadIcon(NULL, IDI_APPLICATION); /* Load a standard icon */
-	wc.hIconSm	 = LoadIcon(NULL, IDI_APPLICATION); /* use the name "A" to use the project icon */
+	double num1 = Convert::ToDouble(textBox1->Text);
 
-	if(!RegisterClassEx(&wc)) {
-		MessageBox(NULL, "Window Registration Failed!","Error!",MB_ICONEXCLAMATION|MB_OK);
-		return 0;
-	}
+	double num2 = Convert::ToDouble(textBox2->Text);
 
-	hwnd = CreateWindowEx(WS_EX_CLIENTEDGE,"WindowClass","Caption",WS_VISIBLE|WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, /* x */
-		CW_USEDEFAULT, /* y */
-		640, /* width */
-		480, /* height */
-		NULL,NULL,hInstance,NULL);
+	double result = num1 + num2;
 
-	if(hwnd == NULL) {
-		MessageBox(NULL, "Window Creation Failed!","Error!",MB_ICONEXCLAMATION|MB_OK);
-		return 0;
-	}
+	MessageBox::Show("Result of addition: " + result, "Result");
 
-	/*
-		This is the heart of our program where all input is processed and 
-		sent to WndProc. Note that GetMessage blocks code flow until it receives something, so
-		this loop will not produce unreasonably high CPU usage
-	*/
-	while(GetMessage(&msg, NULL, 0, 0) > 0) { /* If no error is received... */
-		TranslateMessage(&msg); /* Translate key codes to chars if present */
-		DispatchMessage(&msg); /* Send it to WndProc */
-	}
-	return msg.wParam;
 }
+
+private: System::Void btnMinus_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	double num1 = Convert::ToDouble(textBox1->Text);
+
+	double num2 = Convert::ToDouble(textBox2->Text);
+
+	double result = num1 - num2;
+
+	MessageBox::Show("Result of subtraction: " + result, "Result");
+
+}
+
+private: System::Void btnMultipled_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	double num1 = Convert::ToDouble(textBox1->Text);
+
+	double num2 = Convert::ToDouble(textBox2->Text);
+
+	double result = num1 * num2;
+
+	MessageBox::Show("Result of multiplication: " + result, "Result");
+
+}
+
+private: System::Void btnDivide_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	double num1 = Convert::ToDouble(textBox1->Text);
+
+	double num2 = Convert::ToDouble(textBox2->Text);
+
+	if (num2 != 0) {
+
+		double result = num1 / num2;
+
+		MessageBox::Show("Result of division: " + result, "Result");
+
+	}
+
+	else {
+
+		MessageBox::Show("Cannot divide by zero", "Error");
+
+	}
+
+}
+
+
+
+};
+
+}
+
